@@ -36,7 +36,6 @@ public class PanelGestionar extends javax.swing.JPanel {
         botCambiar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cmbPersonas = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         cajaDNI = new javax.swing.JTextField();
@@ -45,9 +44,12 @@ public class PanelGestionar extends javax.swing.JPanel {
         cajaDireccion = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         cajaTelefono = new javax.swing.JTextField();
-        botCambiar1 = new javax.swing.JButton();
-        botCambiar2 = new javax.swing.JButton();
+        botCrearPersona = new javax.swing.JButton();
+        botEliminarPersona = new javax.swing.JButton();
         botEliminar = new javax.swing.JButton();
+        botAsociar = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel12 = new javax.swing.JLabel();
 
         jLabel1.setText("Hotel?");
 
@@ -108,9 +110,6 @@ public class PanelGestionar extends javax.swing.JPanel {
 
         jLabel2.setText("Persona existente");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 10)); // NOI18N
-        jLabel8.setText("Nueva persona");
-
         jLabel3.setText("DNI");
 
         jLabel9.setText("Nombre");
@@ -143,19 +142,19 @@ public class PanelGestionar extends javax.swing.JPanel {
             }
         });
 
-        botCambiar1.setBackground(new java.awt.Color(255, 255, 204));
-        botCambiar1.setText("Crear");
-        botCambiar1.addActionListener(new java.awt.event.ActionListener() {
+        botCrearPersona.setBackground(new java.awt.Color(255, 255, 204));
+        botCrearPersona.setText("Crear");
+        botCrearPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botCambiar1ActionPerformed(evt);
+                botCrearPersonaActionPerformed(evt);
             }
         });
 
-        botCambiar2.setBackground(new java.awt.Color(255, 255, 204));
-        botCambiar2.setText("Eliminar");
-        botCambiar2.addActionListener(new java.awt.event.ActionListener() {
+        botEliminarPersona.setBackground(new java.awt.Color(255, 255, 204));
+        botEliminarPersona.setText("Eliminar");
+        botEliminarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botCambiar2ActionPerformed(evt);
+                botEliminarPersonaActionPerformed(evt);
             }
         });
 
@@ -168,6 +167,17 @@ public class PanelGestionar extends javax.swing.JPanel {
                 botEliminarActionPerformed(evt);
             }
         });
+
+        botAsociar.setBackground(new java.awt.Color(255, 255, 204));
+        botAsociar.setText("Asociar");
+        botAsociar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botAsociarActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel12.setText("Nueva persona");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -187,9 +197,9 @@ public class PanelGestionar extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botSalir))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jLabel4)
@@ -209,27 +219,46 @@ public class PanelGestionar extends javax.swing.JPanel {
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(jLabel2)
                                                     .addGap(18, 18, 18)
-                                                    .addComponent(cmbPersonas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jLabel3)
-                                                        .addComponent(jLabel8)
-                                                        .addComponent(jLabel9)
-                                                        .addComponent(jLabel10)
-                                                        .addComponent(jLabel11))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(cajaDireccion)
-                                                        .addComponent(cajaDNI)
-                                                        .addComponent(cajaNombre)
-                                                        .addComponent(cajaTelefono)))
-                                                .addComponent(botCambiar1, javax.swing.GroupLayout.Alignment.TRAILING))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(botEliminar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botCambiar2)))
-                                .addGap(0, 35, Short.MAX_VALUE)))))
+                                                    .addComponent(cmbPersonas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(botAsociar))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(botCrearPersona))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGap(28, 28, 28)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel11)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(cajaTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(0, 0, Short.MAX_VALUE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(botEliminar)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(botEliminarPersona))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(24, 24, 24)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(jLabel10)
+                                                            .addComponent(jLabel9)
+                                                            .addComponent(jLabel3))
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(cajaDNI)
+                                                            .addComponent(cajaNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(cajaDireccion, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(0, 9, Short.MAX_VALUE)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jLabel12)
+                                                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(24, 24, 24)))
+                                        .addGap(19, 19, 19)))))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -261,7 +290,7 @@ public class PanelGestionar extends javax.swing.JPanel {
                     .addComponent(cajaNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botCambiar)
-                .addGap(24, 24, 24)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,31 +298,35 @@ public class PanelGestionar extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cmbPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(botAsociar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cajaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(cajaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(cajaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(cajaTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botCambiar1)
+                .addGap(18, 18, 18)
+                .addComponent(botCrearPersona)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botCambiar2)
+                    .addComponent(botEliminarPersona)
                     .addComponent(botEliminar))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -333,24 +366,29 @@ public class PanelGestionar extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaTelefonoActionPerformed
 
-    private void botCambiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCambiar1ActionPerformed
+    private void botCrearPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCrearPersonaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botCambiar1ActionPerformed
+    }//GEN-LAST:event_botCrearPersonaActionPerformed
 
-    private void botCambiar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCambiar2ActionPerformed
+    private void botEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botEliminarPersonaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botCambiar2ActionPerformed
+    }//GEN-LAST:event_botEliminarPersonaActionPerformed
 
     private void botEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botEliminarActionPerformed
         this.principal.irGestionarSesion();
     }//GEN-LAST:event_botEliminarActionPerformed
 
+    private void botAsociarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAsociarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botAsociarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botAsociar;
     private javax.swing.JButton botCambiar;
-    private javax.swing.JButton botCambiar1;
-    private javax.swing.JButton botCambiar2;
+    private javax.swing.JButton botCrearPersona;
     private javax.swing.JButton botEliminar;
+    private javax.swing.JButton botEliminarPersona;
     private javax.swing.JButton botSalir;
     private javax.swing.JButton botVolver;
     private javax.swing.JTextField cajaActual;
@@ -363,16 +401,17 @@ public class PanelGestionar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

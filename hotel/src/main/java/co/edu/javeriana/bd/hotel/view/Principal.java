@@ -8,7 +8,7 @@ public class Principal extends javax.swing.JFrame {
     private PanelGestionar panelGestionar;
     
     public Principal() {
-        this.setTitle("Personapp");
+        this.setTitle("ReVago");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
         this.iniciar();
