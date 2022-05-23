@@ -12,16 +12,16 @@ public class Oracle {
     private final String pass;
     private final String database;
     private final String parameters;
-    //private Connection connection;
+    private Connection connection;
 
     public Oracle() {
-        this.host = "localhost";
-        this.port = "3306";
-        this.user = "persona_app";
-        this.pass = "123";
+        this.host = "orion.javeriana.edu.co";
+        this.port = "1521";
+        this.user = "is107413";
+        this.pass = "bIH6_bJsr0";
         this.database = "persona_22_db";
         this.parameters = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        //this.connection = null;
+        this.connection = null;
     }
     
 
