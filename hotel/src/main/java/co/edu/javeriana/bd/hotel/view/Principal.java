@@ -4,6 +4,8 @@ import co.edu.javeriana.bd.hotel.controller.CuentaBO;
 import co.edu.javeriana.bd.hotel.controller.PaisBO;
 import co.edu.javeriana.bd.hotel.controller.PersonaBO;
 import co.edu.javeriana.bd.hotel.model.dto.CuentaDTO;
+import co.edu.javeriana.bd.hotel.model.dto.PaisDTO;
+import java.util.List;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -113,6 +115,7 @@ public class Principal extends javax.swing.JFrame {
         this.panelSesion.setVisible(true);
         this.add(panelSesion);
         this.setLocationRelativeTo(null);
+        this.panelPaises.refrescar();
         this.pack();
     }
     
@@ -143,6 +146,7 @@ public class Principal extends javax.swing.JFrame {
         this.panelPaises.setVisible(true);
         this.add(panelPaises);
         this.setLocationRelativeTo(null);
+        this.panelPaises.refrescar();
         this.pack();
     }
 
@@ -165,6 +169,31 @@ public class Principal extends javax.swing.JFrame {
             return true;
         }
         return false;
+    }
+
+    boolean crearPais(PaisDTO p) {
+        this.paisBO = new PaisBO();
+        return this.paisBO.crear(p);
+    }
+    
+    List<PaisDTO> findAllPaises() {
+        this.paisBO = new PaisBO();
+        return this.paisBO.findAll();
+    }
+    
+    PaisDTO findPais(String text) {
+        this.paisBO = new PaisBO();
+        return this.paisBO.findById(text);
+    }
+
+    boolean elimPais(String text) {
+        this.paisBO = new PaisBO();
+        return this.paisBO.eliminar(text);
+    }
+
+    boolean modPais(PaisDTO p) {
+        this.paisBO = new PaisBO();
+        return this.paisBO.editar(p);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,7 +9,7 @@ public class PaisDAOImpl implements PaisDAO {
     
     private final Oracle oracle;
 
-    public PaisDAOImpl(Oracle oracle) {
+    public PaisDAOImpl() {
         this.oracle = new Oracle();
     }  
     

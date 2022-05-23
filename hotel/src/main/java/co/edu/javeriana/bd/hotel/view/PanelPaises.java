@@ -1,5 +1,10 @@
 package co.edu.javeriana.bd.hotel.view;
 
+import co.edu.javeriana.bd.hotel.model.dto.PaisDTO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class PanelPaises extends javax.swing.JPanel {
     
     /**
@@ -36,7 +41,6 @@ public class PanelPaises extends javax.swing.JPanel {
         botElim = new javax.swing.JButton();
         botBuscar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -138,9 +142,6 @@ public class PanelPaises extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel5.setText("Conteo de paises: ");
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Nombre");
 
@@ -185,14 +186,12 @@ public class PanelPaises extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
                                 .addGap(42, 42, 42))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
@@ -260,9 +259,7 @@ public class PanelPaises extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -308,20 +305,56 @@ public class PanelPaises extends javax.swing.JPanel {
     }//GEN-LAST:event_botGestActionPerformed
 
     private void botInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botInsertarActionPerformed
-
+        PaisDTO p;
+        if(!espacioBlanco())
+        {
+            p = new PaisDTO(cajaNombre.getText(), Float.parseFloat(cajaIVA.getText()), Float.parseFloat(cajaIC.getText()), Float.parseFloat(cajaINT.getText()));
+            if(this.principal.crearPais(p)) JOptionPane.showMessageDialog(null, "Pais creado!");
+            else JOptionPane.showMessageDialog(null, "No se pudo crear el pais. Verifique que no existe");
+        }
+        else JOptionPane.showMessageDialog(null, "Ningun campo puede estar vacio");
+        refrescar();
     }//GEN-LAST:event_botInsertarActionPerformed
 
     private void botBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscarActionPerformed
+        PaisDTO p;
+        
+        if(cajaNombre.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacio");
+        else
+        {
+            p = this.principal.findPais(cajaNombre.getText());
 
+            DefaultTableModel model = (DefaultTableModel) tablaPaises.getModel();
+
+            int filas = tablaPaises.getRowCount();
+            for (int i = 0;filas>i; i++) model.removeRow(0);
+
+            if(p != null) model.addRow(new Object[]{p.getNombre(), p.getIva(), p.getIc(), p.getInTur()});
+            else JOptionPane.showMessageDialog(null, "No se encontro el pais buscado");
+        }
     }//GEN-LAST:event_botBuscarActionPerformed
 
     private void botModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModActionPerformed
-
+        PaisDTO p;
         
+        if(!espacioBlanco()) 
+        {
+            p = new PaisDTO(cajaNombre.getText(), Float.parseFloat(cajaIVA.getText()), Float.parseFloat(cajaIC.getText()), Float.parseFloat(cajaINT.getText()));
+            if(this.principal.modPais(p)) JOptionPane.showMessageDialog(null, "Pais modificado!");
+            else JOptionPane.showMessageDialog(null, "No se pudo modificar el pais. Verifique que existe");
+            refrescar();
+        }
+        else JOptionPane.showMessageDialog(null, "Ningun campo puede estar vacio");
     }//GEN-LAST:event_botModActionPerformed
 
     private void botElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botElimActionPerformed
-
+        if(cajaNombre.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacio");
+        else
+        {
+            if(this.principal.elimPais(cajaNombre.getText())) JOptionPane.showMessageDialog(null, "Pais eliminado!");
+            else JOptionPane.showMessageDialog(null, "No se pudo eliminar el pais. Verifique que existe");
+            refrescar();
+        }
     }//GEN-LAST:event_botElimActionPerformed
 
     private void cajaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNombreActionPerformed
@@ -340,7 +373,22 @@ public class PanelPaises extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaINTActionPerformed
 
+    protected void refrescar()
+    {
+        List<PaisDTO> paises = this.principal.findAllPaises();
 
+        DefaultTableModel model = (DefaultTableModel) tablaPaises.getModel();
+
+        int filas = tablaPaises.getRowCount();
+        for (int i = 0;filas>i; i++) model.removeRow(0);
+
+        if(paises != null) for(PaisDTO p : paises) model.addRow(new Object[]{p.getNombre(), p.getIva(), p.getIc(), p.getInTur()});
+    }
+    
+    private Boolean espacioBlanco()
+    {
+        return (cajaNombre.getText().equals("") || cajaIVA.getText().equals("") || cajaINT.getText().equals("") || cajaIC.getText().equals(""));
+    }   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botBuscar;
     private javax.swing.JButton botElim;
@@ -356,7 +404,6 @@ public class PanelPaises extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

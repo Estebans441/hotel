@@ -7,6 +7,13 @@ public class PaisDTO {
     float ic;
     float inTur;
 
+    public PaisDTO(String nombre, float iva, float ic, float inTur) {
+        this.nombre = nombre;
+        this.iva = iva;
+        this.ic = ic;
+        this.inTur = inTur;
+    }
+    
     public String getNombre() {
         return nombre;
     }
