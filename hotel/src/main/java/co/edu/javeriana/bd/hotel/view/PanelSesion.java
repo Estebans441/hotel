@@ -1,5 +1,8 @@
 package co.edu.javeriana.bd.hotel.view;
 
+import co.edu.javeriana.bd.hotel.model.dto.CuentaDTO;
+import javax.swing.JOptionPane;
+
 public class PanelSesion extends javax.swing.JPanel {
 
     /**
@@ -7,6 +10,7 @@ public class PanelSesion extends javax.swing.JPanel {
      */
     
     private final Principal principal;
+    private CuentaDTO cuenta = null;
     
     public PanelSesion(Principal principal) {
         initComponents();
@@ -160,15 +164,25 @@ public class PanelSesion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botIniciarSesionActionPerformed
-        Boolean valido;
-        //****AGREGAR VALIDACION DE INICIO DE SESION****//
-        valido = true;
-        
-        if(valido) this.principal.irSesionPaises();
+        if (validar())
+        {
+            this.cuenta = new CuentaDTO(cajaUsuario.getText(), cajaPass.getText());
+            if(this.principal.iniciarSesion(this.cuenta)) 
+            {
+                JOptionPane.showMessageDialog(null, "Sesion iniciada con exito");
+                this.principal.irSesionPaises();
+            }
+            else JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+        }
     }//GEN-LAST:event_botIniciarSesionActionPerformed
 
     private void botCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCrearCuentaActionPerformed
-        // TODO add your handling code here:
+        if (validar())
+        {
+            this.cuenta = new CuentaDTO(cajaUsuario.getText(), cajaPass.getText());
+            if(this.principal.crearCuenta(this.cuenta)) JOptionPane.showMessageDialog(null, "Cuenta creada!");
+            else JOptionPane.showMessageDialog(null, "No se pudo crear la cuenta. Verifique que no existe");
+        }
     }//GEN-LAST:event_botCrearCuentaActionPerformed
 
     private void cajaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaUsuarioActionPerformed
@@ -196,4 +210,13 @@ public class PanelSesion extends javax.swing.JPanel {
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel txtError;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validar() {
+        if(cajaUsuario.getText().equals("") || cajaPass.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "No pueden haber espacios en blanco");
+            return false;
+        }
+        else return true;
+    }
 }

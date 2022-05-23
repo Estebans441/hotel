@@ -1,11 +1,22 @@
 package co.edu.javeriana.bd.hotel.view;
 
+import co.edu.javeriana.bd.hotel.controller.CuentaBO;
+import co.edu.javeriana.bd.hotel.controller.PaisBO;
+import co.edu.javeriana.bd.hotel.controller.PersonaBO;
+import co.edu.javeriana.bd.hotel.model.dto.CuentaDTO;
+
 public class Principal extends javax.swing.JFrame {
 
 
     private PanelSesion panelSesion;
     private PanelPaises panelPaises;
     private PanelGestionar panelGestionar;
+    
+    private CuentaBO cuentaBO;
+    private PersonaBO personaBO;
+    private PaisBO paisBO;
+    
+    private CuentaDTO sesionIniciada;
     
     public Principal() {
         this.setTitle("ReVago");
@@ -68,6 +79,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+
+    public CuentaDTO getSesionIniciada() {
+        return sesionIniciada;
+    }
     
     private void iniciar() {
         this.panelSesion = new PanelSesion(this);
@@ -129,6 +144,27 @@ public class Principal extends javax.swing.JFrame {
         this.add(panelPaises);
         this.setLocationRelativeTo(null);
         this.pack();
+    }
+
+    Boolean iniciarSesion(CuentaDTO cuenta) {
+        this.cuentaBO = new CuentaBO();
+        if (this.cuentaBO.iniciarSesion(cuenta))
+        {
+            this.sesionIniciada = cuenta;
+            System.out.println("Iniciado con " + this.sesionIniciada.toString());
+            return true;
+        }
+        return false;
+    }
+
+    boolean crearCuenta(CuentaDTO cuenta) {
+        this.cuentaBO = new CuentaBO();
+        if (this.cuentaBO.crearCuenta(cuenta))
+        {
+            System.out.println("Cuenta creada: " + cuenta.toString());
+            return true;
+        }
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
