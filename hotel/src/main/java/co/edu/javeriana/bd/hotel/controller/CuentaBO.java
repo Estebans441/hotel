@@ -11,8 +11,7 @@ public class CuentaBO {
     
     public Boolean iniciarSesion(CuentaDTO cuenta) {
         this.cuentaDAO = new CuentaDAOImpl();
-        return true;
-        //return cuentaDAO.findById(cuenta.getUser()).getPass().equals(cuenta.getPass());
+        return cuentaDAO.findById(cuenta.getUser()).getPass().equals(cuenta.getPass());
     }
     
     public Boolean crearCuenta(CuentaDTO cuenta) {
@@ -20,6 +19,21 @@ public class CuentaBO {
         CuentaDTO existe =  cuentaDAO.findById(cuenta.getUser());
         if(existe == null) return false;
         else return (cuentaDAO.create(cuenta) != null);
+    }
+
+    public boolean cambiarPass(CuentaDTO sesionIniciada, String nueva) {
+        this.cuentaDAO = new CuentaDAOImpl();
+        return this.cuentaDAO.editPass(sesionIniciada, nueva) != null;
+    }
+
+    public boolean asociarPersona(String dni, CuentaDTO sesionIniciada) {
+        this.cuentaDAO = new CuentaDAOImpl();
+        return this.cuentaDAO.editPers(dni, sesionIniciada) != null;
+    }
+
+    public boolean eliminarCuenta(CuentaDTO sesionIniciada) {
+        this.cuentaDAO = new CuentaDAOImpl();
+        return this.cuentaDAO.delete(sesionIniciada.getUser());
     }
     
 }

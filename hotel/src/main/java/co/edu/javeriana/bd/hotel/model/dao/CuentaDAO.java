@@ -7,14 +7,12 @@ public interface CuentaDAO {
     
     public CuentaDTO create(CuentaDTO cuenta);
     
-    public CuentaDTO edit(String user, CuentaDTO cuenta);
+    public CuentaDTO editPass(CuentaDTO cuenta, String nueva);
+    
+    public CuentaDTO editPers(String persona, CuentaDTO cuenta);
     
     public Boolean delete(String user);
     
     public CuentaDTO findById(String user);
-    
-    public List<CuentaDTO> findAll();
-    
-    public Integer count();
-    
+  
 }

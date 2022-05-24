@@ -5,6 +5,7 @@ import co.edu.javeriana.bd.hotel.controller.PaisBO;
 import co.edu.javeriana.bd.hotel.controller.PersonaBO;
 import co.edu.javeriana.bd.hotel.model.dto.CuentaDTO;
 import co.edu.javeriana.bd.hotel.model.dto.PaisDTO;
+import co.edu.javeriana.bd.hotel.model.dto.PersonaDTO;
 import java.util.List;
 
 public class Principal extends javax.swing.JFrame {
@@ -126,6 +127,7 @@ public class Principal extends javax.swing.JFrame {
         this.panelGestionar.setVisible(true);
         this.add(panelGestionar);
         this.setLocationRelativeTo(null);
+        this.panelGestionar.actPersonas();
         this.pack();
     }
 
@@ -194,6 +196,39 @@ public class Principal extends javax.swing.JFrame {
     boolean modPais(PaisDTO p) {
         this.paisBO = new PaisBO();
         return this.paisBO.editar(p);
+    }
+
+    boolean cambiarPass(String actual, String nueva) {
+        this.cuentaBO = new CuentaBO();
+        if(this.sesionIniciada.getPass().equals(actual))
+            return this.cuentaBO.cambiarPass(sesionIniciada, nueva);
+        else return false;
+    }
+
+    List<PersonaDTO> findAllPersonas() {
+        this.personaBO = new PersonaBO();
+        return this.personaBO.findByAll();
+    }
+
+    boolean asociarPersona(String string) {
+        this.cuentaBO = new CuentaBO();
+        this.personaBO = new PersonaBO();
+        return this.cuentaBO.asociarPersona(string, sesionIniciada);
+    }
+
+    boolean eliminarCuenta() {
+        this.cuentaBO = new CuentaBO();
+        return this.cuentaBO.eliminarCuenta(sesionIniciada);
+    }
+
+    boolean eliminarPersona(String dni) {
+        this.personaBO = new PersonaBO();
+        return this.personaBO.eliminar(dni);
+    }
+
+    boolean crearPersona(PersonaDTO p) {
+        this.personaBO = new PersonaBO();
+        return this.personaBO.crear(p);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

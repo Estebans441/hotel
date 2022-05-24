@@ -7,13 +7,9 @@ public interface PersonaDAO {
     
     public PersonaDTO create(PersonaDTO persona);
     
-    public PersonaDTO edit(String dni, PersonaDTO persona);
-    
     public Boolean delete(String dni);
     
     public PersonaDTO findById(String dni);
     
     public List<PersonaDTO> findAll();
-    
-    public Integer count();
 }

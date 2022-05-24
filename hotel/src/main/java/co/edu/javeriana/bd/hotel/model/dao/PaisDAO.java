@@ -15,6 +15,4 @@ public interface PaisDAO {
     
     public List<PaisDTO> findAll();
     
-    public Integer count();
-    
 }

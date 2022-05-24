@@ -1,5 +1,9 @@
 package co.edu.javeriana.bd.hotel.view;
 
+import co.edu.javeriana.bd.hotel.model.dto.PersonaDTO;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 public class PanelGestionar extends javax.swing.JPanel {
 
     /**
@@ -347,7 +351,13 @@ public class PanelGestionar extends javax.swing.JPanel {
     }//GEN-LAST:event_cajaNuevaActionPerformed
 
     private void botCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCambiarActionPerformed
-
+        if(cajaActual.getText().equals("") || cajaNueva.getText().equals("")) JOptionPane.showMessageDialog(null, "Ninguno de los campos puede estar en blanco");
+        else
+        {
+            if(this.principal.cambiarPass(cajaActual.getText(), cajaNueva.getText())) 
+                JOptionPane.showMessageDialog(null, "Contraseña actualizada");
+            else JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta");
+        }
     }//GEN-LAST:event_botCambiarActionPerformed
 
     private void cajaDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaDNIActionPerformed
@@ -367,21 +377,47 @@ public class PanelGestionar extends javax.swing.JPanel {
     }//GEN-LAST:event_cajaTelefonoActionPerformed
 
     private void botCrearPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCrearPersonaActionPerformed
-        // TODO add your handling code here:
+        PersonaDTO p;
+        if(cajaDNI.getText().equals("") || cajaNombre.getText().equals("") || cajaDireccion.getText().equals("") || cajaTelefono.getText().equals("")) JOptionPane.showMessageDialog(null, "Ningun campo puede estar vacio");
+        else 
+        {
+            p = new PersonaDTO(cajaDNI.getText(), cajaNombre.getText(), cajaDireccion.getText(), cajaTelefono.getText());
+            if(this.principal.crearPersona(p)) JOptionPane.showMessageDialog(null, "Se creo a la persona");
+            else JOptionPane.showMessageDialog(null, "No se pudo crear a la persona");
+            actPersonas();
+        }
     }//GEN-LAST:event_botCrearPersonaActionPerformed
 
     private void botEliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botEliminarPersonaActionPerformed
-        // TODO add your handling code here:
+        if(cajaDNI.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo dni no puede estar vacio");
+        else 
+        {
+            if(this.principal.eliminarPersona(cajaDNI.getText())) JOptionPane.showMessageDialog(null, "Se elimino a la persona");
+            else JOptionPane.showMessageDialog(null, "No se pudo eliminar a la persona");
+            actPersonas();
+        }
     }//GEN-LAST:event_botEliminarPersonaActionPerformed
 
     private void botEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botEliminarActionPerformed
-        this.principal.irGestionarSesion();
+        if(this.principal.eliminarCuenta())
+        {
+            JOptionPane.showMessageDialog(null, "Cuenta eliminada!");
+            this.principal.irGestionarSesion();
+        }
+        else JOptionPane.showMessageDialog(null, "No se pudo eliminar la cuenta");
     }//GEN-LAST:event_botEliminarActionPerformed
 
     private void botAsociarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAsociarActionPerformed
-        // TODO add your handling code here:
+        if(this.principal.asociarPersona(cmbPersonas.getSelectedItem().toString().split(" ")[0]))
+            JOptionPane.showMessageDialog(null, "Persona asociada a la cuenta");
+        else JOptionPane.showMessageDialog(null, "No se pudo asociar la persona a la cuenta");
     }//GEN-LAST:event_botAsociarActionPerformed
-
+    
+    protected void actPersonas()
+    {
+        List<PersonaDTO> personas = this.principal.findAllPersonas();
+        for(PersonaDTO p : personas) cmbPersonas.addItem(p.toString());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botAsociar;

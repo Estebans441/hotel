@@ -19,11 +19,6 @@ public class CuentaDAOImpl implements CuentaDAO {
     }
 
     @Override
-    public CuentaDTO edit(String user, CuentaDTO cuenta) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public Boolean delete(String user) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -34,12 +29,12 @@ public class CuentaDAOImpl implements CuentaDAO {
     }
 
     @Override
-    public List<CuentaDTO> findAll() {
+    public CuentaDTO editPass(CuentaDTO cuenta, String nueva) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Integer count() {
+    public CuentaDTO editPers(String persona, CuentaDTO cuenta) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
