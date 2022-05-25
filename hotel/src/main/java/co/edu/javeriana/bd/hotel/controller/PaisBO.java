@@ -16,6 +16,8 @@ public class PaisBO {
 
     public boolean crear(PaisDTO p) {
         this.pdao = new PaisDAOImpl();
+        PaisDTO existe = pdao.findById(p.getNombre());
+        if(existe != null) return false;
         return this.pdao.create(p) != null;
     }
 

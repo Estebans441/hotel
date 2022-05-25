@@ -319,7 +319,7 @@ public class PanelPaises extends javax.swing.JPanel {
     private void botBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscarActionPerformed
         PaisDTO p;
         
-        if(cajaNombre.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacio");
+        if(cajaNombre.getText().equals("")) refrescar();
         else
         {
             p = this.principal.findPais(cajaNombre.getText());

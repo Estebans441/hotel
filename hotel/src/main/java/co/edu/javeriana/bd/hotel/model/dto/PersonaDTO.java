@@ -7,7 +7,7 @@ public class PersonaDTO {
     private String direccion;
     private String telefono;
 
-    public PersonaDTO(String dni, String nombre, String direccion, String telefono) {
+    public PersonaDTO(String dni, String nombre, String telefono, String direccion) {
         this.dni = dni;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -45,9 +45,14 @@ public class PersonaDTO {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
+    
     @Override
     public String toString() {
         return dni + " - " + nombre;
     }
+
+    public String toStringAll() {
+        return "DNI: " + dni + ", Nombre: " + nombre + ", Direccion: " + direccion + ", Telefono: " + telefono;
+    }
+    
 }

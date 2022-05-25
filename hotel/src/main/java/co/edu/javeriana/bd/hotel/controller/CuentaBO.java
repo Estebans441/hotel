@@ -1,17 +1,25 @@
 package co.edu.javeriana.bd.hotel.controller;
 
 import co.edu.javeriana.bd.hotel.model.dao.CuentaDAO;
+import co.edu.javeriana.bd.hotel.model.dao.PersonaDAO;
 import co.edu.javeriana.bd.hotel.model.dao.impl.CuentaDAOImpl;
+import co.edu.javeriana.bd.hotel.model.dao.impl.PersonaDAOImpl;
 import co.edu.javeriana.bd.hotel.model.dto.CuentaDTO;
 
 
 public class CuentaBO {
     
     CuentaDAO cuentaDAO;
+    PersonaDAO personaDAO;
     
-    public Boolean iniciarSesion(CuentaDTO cuenta) {
+    public CuentaDTO iniciarSesion(CuentaDTO cuenta) {
         this.cuentaDAO = new CuentaDAOImpl();
-        return cuentaDAO.findById(cuenta.getUser()).getPass().equals(cuenta.getPass());
+        this.personaDAO = new PersonaDAOImpl();
+        CuentaDTO c = cuentaDAO.findById(cuenta.getUser());
+        String persona = cuentaDAO.findPer(cuenta.getUser());
+        if(persona != null) c.setPersona(personaDAO.findById(persona));
+        if(c != null) if(c.getPass().equals(cuenta.getPass())) return c;
+        return null;
     }
     
     public Boolean crearCuenta(CuentaDTO cuenta) {
@@ -34,6 +42,5 @@ public class CuentaBO {
     public boolean eliminarCuenta(CuentaDTO sesionIniciada) {
         this.cuentaDAO = new CuentaDAOImpl();
         return this.cuentaDAO.delete(sesionIniciada.getUser());
-    }
-    
+    }    
 }

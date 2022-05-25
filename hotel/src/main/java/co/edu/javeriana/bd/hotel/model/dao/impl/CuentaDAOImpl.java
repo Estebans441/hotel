@@ -35,7 +35,7 @@ public class CuentaDAOImpl implements CuentaDAO {
             
             switch (code) {
                 case 1:
-                    System.out.println("Se creo la persona");
+                    System.out.println("Se creo la cuenta");
                     return findById(cuenta.getUser());
                 default:
                     return null;
@@ -49,7 +49,31 @@ public class CuentaDAOImpl implements CuentaDAO {
 
     @Override
     public Boolean delete(String user) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            String query = "DELETE FROM p2_cuenta WHERE usuario = '" + user + "'";
+            System.out.println(query);
+            
+            CuentaDTO cuenta = findById(user);
+            System.out.println("Eliminando: " + cuenta);
+            
+            this.oracle.conectar();
+            Statement stmt = this.oracle.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+            this.oracle.desconectar();
+            
+            switch (code) {
+                case 1:
+                    System.out.println("Se elimino la cuenta");
+                    return true;
+                default:
+                    return false;
+            }
+            
+        } catch (SQLException ex){
+            Logger.getLogger(CuentaDAOImpl.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 
     @Override
@@ -88,12 +112,92 @@ public class CuentaDAOImpl implements CuentaDAO {
 
     @Override
     public CuentaDTO editPass(CuentaDTO cuenta, String nueva) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            this.oracle.conectar();
+            String query = "UPDATE p2_cuenta SET "+ 
+                    "pass = '" + nueva + "' " +
+                    " WHERE usuario = '" + cuenta.getUser() + "'";
+            System.out.println(query);
+            
+            Statement stmt = this.oracle.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+            this.oracle.desconectar();
+            
+            switch (code) {
+                case 1:
+                    System.out.println("Se edito la contrasenia");
+                    return findById(cuenta.getUser());
+                default:
+                    return null;
+            }
+            
+        } catch (SQLException ex){
+            Logger.getLogger(CuentaDAOImpl.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 
     @Override
     public CuentaDTO editPers(String persona, CuentaDTO cuenta) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            this.oracle.conectar();
+            String query = "UPDATE p2_cuenta SET "+ 
+                    "persona = '" + persona + "' " +
+                    " WHERE usuario = '" + cuenta.getUser() + "'";
+            System.out.println(query);
+            
+            Statement stmt = this.oracle.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+            this.oracle.desconectar();
+            
+            switch (code) {
+                case 1:
+                    System.out.println("Se edito la cuenta");
+                    return findById(cuenta.getUser());
+                default:
+                    return null;
+            }
+            
+        } catch (SQLException ex){
+            Logger.getLogger(CuentaDAOImpl.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
+    }
+
+    @Override
+    public String findPer(String user) {
+        try{
+            this.oracle.conectar();
+            String query = "SELECT * FROM p2_cuenta WHERE usuario = '"+ user +"'";
+            System.out.println(query);
+
+            Statement stmt = this.oracle.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.first())
+            {
+                String persona = rs.getString("persona");
+                System.out.println("Persona de la cuenta: " + persona);
+                rs.close();
+                stmt.close();
+                this.oracle.desconectar();
+                return persona;
+            } 
+            else 
+            {
+                System.out.println("No se encontro ninguna cuenta");
+                rs.close();
+                stmt.close();
+                this.oracle.desconectar();
+                
+                return null;
+            }        
+            
+        } catch (SQLException ex){
+            Logger.getLogger(PersonaDAOImpl.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
     
 }

@@ -15,4 +15,5 @@ public interface CuentaDAO {
     
     public CuentaDTO findById(String user);
   
+    public String findPer(String user);
 }

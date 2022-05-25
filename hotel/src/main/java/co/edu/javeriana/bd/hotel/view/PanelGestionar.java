@@ -54,6 +54,7 @@ public class PanelGestionar extends javax.swing.JPanel {
         botAsociar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
+        botPerAso = new javax.swing.JButton();
 
         jLabel1.setText("Hotel?");
 
@@ -183,6 +184,15 @@ public class PanelGestionar extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel12.setText("Nueva persona");
 
+        botPerAso.setBackground(new java.awt.Color(204, 255, 255));
+        botPerAso.setText("Ver persona asociada");
+        botPerAso.setToolTipText("");
+        botPerAso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botPerAsoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,9 +238,6 @@ public class PanelGestionar extends javax.swing.JPanel {
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(botCrearPersona))
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addGap(28, 28, 28)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +268,12 @@ public class PanelGestionar extends javax.swing.JPanel {
                                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                             .addComponent(jLabel12)
                                                             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGap(24, 24, 24)))
+                                                .addGap(24, 24, 24))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(botPerAso)
+                                                    .addComponent(botCrearPersona))))
                                         .addGap(19, 19, 19)))))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -280,7 +292,9 @@ public class PanelGestionar extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(14, 14, 14)
+                .addComponent(botPerAso)
+                .addGap(1, 1, 1)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -412,6 +426,11 @@ public class PanelGestionar extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Persona asociada a la cuenta");
         else JOptionPane.showMessageDialog(null, "No se pudo asociar la persona a la cuenta");
     }//GEN-LAST:event_botAsociarActionPerformed
+
+    private void botPerAsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botPerAsoActionPerformed
+        if(this.principal.sesionIniciada.getPersona() != null) JOptionPane.showMessageDialog(null, "Persona asociada: " + this.principal.sesionIniciada.getPersona().toStringAll());
+        else JOptionPane.showMessageDialog(null,"Esta cuenta no tiene ninguna persona asociada");
+    }//GEN-LAST:event_botPerAsoActionPerformed
     
     protected void actPersonas()
     {
@@ -425,6 +444,7 @@ public class PanelGestionar extends javax.swing.JPanel {
     private javax.swing.JButton botCrearPersona;
     private javax.swing.JButton botEliminar;
     private javax.swing.JButton botEliminarPersona;
+    private javax.swing.JButton botPerAso;
     private javax.swing.JButton botSalir;
     private javax.swing.JButton botVolver;
     private javax.swing.JTextField cajaActual;

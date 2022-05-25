@@ -19,7 +19,7 @@ public class Principal extends javax.swing.JFrame {
     private PersonaBO personaBO;
     private PaisBO paisBO;
     
-    private CuentaDTO sesionIniciada;
+    protected CuentaDTO sesionIniciada;
     
     public Principal() {
         this.setTitle("ReVago");
@@ -152,9 +152,10 @@ public class Principal extends javax.swing.JFrame {
 
     Boolean iniciarSesion(CuentaDTO cuenta) {
         this.cuentaBO = new CuentaBO();
-        if (this.cuentaBO.iniciarSesion(cuenta))
+        CuentaDTO c = this.cuentaBO.iniciarSesion(cuenta);
+        if (c != null)
         {
-            this.sesionIniciada = cuenta;
+            this.sesionIniciada = c;
             System.out.println("Iniciado con " + this.sesionIniciada.toString());
             return true;
         }
@@ -211,6 +212,7 @@ public class Principal extends javax.swing.JFrame {
     boolean asociarPersona(String string) {
         this.cuentaBO = new CuentaBO();
         this.personaBO = new PersonaBO();
+        this.sesionIniciada.setPersona(this.personaBO.findById(string));
         return this.cuentaBO.asociarPersona(string, sesionIniciada);
     }
 
