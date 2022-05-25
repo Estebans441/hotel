@@ -101,22 +101,20 @@ public class Principal extends javax.swing.JFrame {
 
     void irSesionPaises() {
         this.remove(panelSesion);
-       
         this.panelPaises = new PanelPaises(this);
         this.panelPaises.setVisible(true);
         this.add(panelPaises);
         this.setLocationRelativeTo(null);
+        this.panelPaises.refrescar();
         this.pack();
     }
 
     void irPaisesSesion() {
         this.remove(panelPaises);
-       
         this.panelSesion = new PanelSesion(this);
         this.panelSesion.setVisible(true);
         this.add(panelSesion);
         this.setLocationRelativeTo(null);
-        this.panelPaises.refrescar();
         this.pack();
     }
     

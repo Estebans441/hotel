@@ -19,11 +19,46 @@ public class Oracle {
         this.port = "1521";
         this.user = "is107413";
         this.pass = "bIH6_bJsr0";
-        this.database = "persona_22_db";
-        this.parameters = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        this.database = "LAB";
+        this.parameters = "";
+        this.connection = null;
+    }
+   
+    public void conectar(){
+        try {
+            String path = "jdbc:oracle:thin:@" + host + ":" + port + "/" + database;
+            System.out.println(path);
+            this.connection = DriverManager.getConnection(path, user, pass);
+            System.out.println("Se conecto");
+        } catch (SQLException ex) {
+            System.out.println("No se conecto");
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            this.connection=null;
+        }catch(Exception ex){
+            System.out.println("No se conecto");
+            System.out.println("Exception: " + ex.getMessage());
+            this.connection=null;
+        }
+    }
+
+    public void desconectar() {
+        try {
+            this.connection.close();
+            System.out.println("Se desconecto");
+        } catch (SQLException ex) {
+            System.out.println("No se desconecto");
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
         this.connection = null;
     }
     
-
+    public Connection getConnection() {
+        return connection;
+    }
+    
     
 }

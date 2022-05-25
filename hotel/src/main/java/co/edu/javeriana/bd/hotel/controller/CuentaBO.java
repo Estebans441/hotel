@@ -17,8 +17,8 @@ public class CuentaBO {
     public Boolean crearCuenta(CuentaDTO cuenta) {
         this.cuentaDAO = new CuentaDAOImpl();
         CuentaDTO existe =  cuentaDAO.findById(cuenta.getUser());
-        if(existe == null) return false;
-        else return (cuentaDAO.create(cuenta) != null);
+        if(existe == null) return (cuentaDAO.create(cuenta) != null);
+        else return false;
     }
 
     public boolean cambiarPass(CuentaDTO sesionIniciada, String nueva) {
