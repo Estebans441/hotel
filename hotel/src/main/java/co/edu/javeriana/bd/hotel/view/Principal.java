@@ -10,7 +10,6 @@ import java.util.List;
 
 public class Principal extends javax.swing.JFrame {
 
-
     private PanelSesion panelSesion;
     private PanelPaises panelPaises;
     private PanelGestionar panelGestionar;
